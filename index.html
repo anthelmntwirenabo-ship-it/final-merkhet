@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merkhet Group — Kibale Research Protocol</title>
+<meta name="description" content="Merkhet Group (Kibale Research Protocol) is a youth-led science and technology initiative in Bigodi, Uganda — building soaps, electronics and training programmes from local materials and Pan-African knowledge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canopy:#1F3327;
+    --canopy-deep:#152219;
+    --clay:#AE4A2C;
+    --clay-bright:#C25A38;
+    --ivory:#F3ECDB;
+    --ivory-dim:#E9DFC7;
+    --ink:#211C15;
+    --gold:#C79A2B;
+    --leaf:#5C8267;
+    --line: rgba(33,28,21,0.14);
+    --line-light: rgba(243,236,219,0.22);
+    --shadow: 0 18px 40px -22px rgba(21,34,25,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono',monospace; }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  section{position:relative;}
+
+  /* ---------- perforated divider ---------- */
+  .tear{
+    height:24px;
+    background-image: radial-gradient(circle, var(--ivory) 3px, transparent 3.5px);
+    background-size: 22px 22px;
+    background-position: center;
+    background-color: var(--canopy);
+  }
+  .tear.on-ivory{ background-color:var(--ivory); }
+  .tear.into-canopy{ background-color:var(--canopy); }
+  .tear.into-ivory{ background-color:var(--ivory); }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(243,236,219,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .brand-mark{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--canopy);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ivory); font-family:'Fraunces',serif; font-weight:700; font-size:15px;
+    border:1px solid var(--gold);
+    flex-shrink:0;
+  }
+  .brand-text{ line-height:1.15; }
+  .brand-text b{ font-family:'Fraunces',serif; font-size:16.5px; display:block; }
+  .brand-text span{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.06em; color:var(--clay); text-transform:uppercase; }
+  nav.links{ display:flex; gap:30px; align-items:center; }
+  nav.links a{ text-decoration:none; font-size:14.5px; font-weight:500; color:var(--ink); opacity:0.78; transition:opacity .15s; }
+  nav.links a:hover{ opacity:1; }
+  .nav-cta{
+    background:var(--clay); color:var(--ivory) !important; opacity:1 !important;
+    padding:9px 18px; border-radius:3px; font-size:13.5px !important; font-weight:600 !important;
+  }
+  .nav-cta:hover{ background:var(--clay-bright); }
+  .burger{ display:none; background:none; border:1px solid var(--line); border-radius:4px; width:40px;height:40px; cursor:pointer; }
+  .burger span{ display:block; width:18px; height:2px; background:var(--ink); margin:3px auto; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:var(--canopy);
+    color:var(--ivory);
+    padding:64px 0 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(199,154,43,0.10), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(174,74,44,0.16), transparent 40%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .field-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--gold); border:1px solid rgba(199,154,43,0.5); padding:6px 12px; border-radius:20px;
+    margin-bottom:26px;
+  }
+  .field-tag::before{ content:"●"; font-size:8px; color:var(--gold); }
+  .hero h1{
+    font-size:clamp(38px,5.4vw,62px);
+    line-height:1.04;
+    color:var(--ivory);
+  }
+  .hero h1 em{ font-style:italic; color:var(--gold); font-weight:500; }
+  .hero p.lede{
+    margin-top:22px; font-size:17.5px; max-width:52ch; color:rgba(243,236,219,0.82);
+  }
+  .hero-ctas{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:3px; font-size:14.5px; font-weight:600;
+    text-decoration:none; border:1px solid transparent; cursor:pointer;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--clay); color:var(--ivory); }
+  .btn-primary:hover{ background:var(--clay-bright); }
+  .btn-ghost{ border-color:rgba(243,236,219,0.4); color:var(--ivory); }
+  .btn-ghost:hover{ border-color:var(--gold); }
+  .btn-dark{ background:var(--canopy); color:var(--ivory); }
+  .btn-dark:hover{ background:var(--canopy-deep); }
+  .btn-outline{ border-color:var(--ink); color:var(--ink); }
+  .btn-outline:hover{ border-color:var(--clay); color:var(--clay); }
+
+  .hero-stats{
+    display:flex; gap:34px; margin-top:48px; padding-top:28px;
+    border-top:1px solid rgba(243,236,219,0.18); flex-wrap:wrap;
+  }
+  .hero-stats .stat b{ font-family:'Fraunces',serif; font-size:30px; color:var(--gold); display:block; }
+  .hero-stats .stat span{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(243,236,219,0.7); }
+
+  /* stamp */
+  .stamp-wrap{ position:relative; display:flex; justify-content:center; z-index:2; }
+  .hero-photo{
+    position:relative; border-radius:6px; overflow:hidden;
+    border:1px solid rgba(243,236,219,0.25);
+    box-shadow: var(--shadow);
+    aspect-ratio: 4/5;
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; }
+  .photo-caption{
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(to top, rgba(21,34,25,0.92), transparent);
+    color:var(--ivory); padding:36px 18px 16px;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.04em;
+  }
+  .stamp{
+    position:absolute; top:-18px; right:-18px;
+    width:112px; height:112px;
+    animation: spin 34s linear infinite;
+    filter:drop-shadow(0 6px 14px rgba(0,0,0,0.35));
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ .stamp{ animation:none; } }
+
+  /* ---------- section headers ---------- */
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--clay); margin-bottom:14px; display:block;
+  }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(28px,3.4vw,40px); line-height:1.12; }
+  .section-head p{ margin-top:16px; font-size:16px; color:rgba(33,28,21,0.72); }
+  section.pad{ padding:88px 0; }
+
+  /* ---------- about ---------- */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .about-grid p{ font-size:16px; color:rgba(33,28,21,0.78); margin-top:16px; }
+  .pillars{ display:flex; flex-direction:column; gap:0; }
+  .pillar{ display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--line); }
+  .pillar:last-child{ border-bottom:1px solid var(--line); }
+  .pillar .num{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--gold); background:var(--canopy); width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .pillar h4{ font-size:17px; margin-bottom:6px; }
+  .pillar p{ font-size:14.5px; color:rgba(33,28,21,0.68); margin:0; }
+
+  /* ---------- specimen tags (products) ---------- */
+  .canopy-section{ background:var(--canopy); color:var(--ivory); }
+  .canopy-section .eyebrow{ color:var(--gold); }
+  .canopy-section .section-head p{ color:rgba(243,236,219,0.75); }
+  .specimens{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .specimen{
+    background:var(--canopy-deep); border:1px solid rgba(243,236,219,0.14); border-radius:6px; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .specimen .imgs{ display:grid; }
+  .specimen .imgs.two{ grid-template-columns:1fr 1fr; }
+  .specimen .imgs img{ height:190px; width:100%; object-fit:cover; }
+  .specimen .imgs.one img{ height:190px; }
+  .specimen-body{ padding:22px 22px 26px; position:relative; }
+  .tag-label{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gold); display:flex; align-items:center; gap:8px; margin-bottom:10px;
+  }
+  .tag-label::before{ content:""; width:8px; height:8px; border-radius:50%; border:1px solid var(--gold); }
+  .specimen h3{ font-size:20px; color:var(--ivory); }
+  .specimen p{ margin-top:8px; font-size:14.5px; color:rgba(243,236,219,0.72); }
+
+  /* ---------- electronics ---------- */
+  .elec-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:26px; }
+  .elec-card{ border:1px solid var(--line); border-radius:6px; overflow:hidden; background:#fff; }
+  .elec-card img{ height:210px; width:100%; object-fit:cover; }
+  .elec-card .body{ padding:18px 20px 22px; }
+  .elec-card h4{ font-size:16.5px; }
+  .elec-card p{ font-size:14px; color:rgba(33,28,21,0.68); margin-top:6px; }
+  .gadget-strip{
+    display:grid; grid-template-columns:1fr 1.3fr; gap:0; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:#fff;
+  }
+  .gadget-strip img{ height:100%; min-height:220px; object-fit:cover; }
+  .gadget-copy{ padding:34px; display:flex; flex-direction:column; justify-content:center; }
+  .gadget-copy .eyebrow{ margin-bottom:10px; }
+  .gadget-copy h3{ font-size:24px; margin-bottom:12px; }
+  .gadget-copy p{ font-size:15px; color:rgba(33,28,21,0.72); }
+
+  /* ---------- training ---------- */
+  .programmes{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  .programme{ padding:32px 28px; border-right:1px solid var(--line); background:#fff; }
+  .programme:last-child{ border-right:none; }
+  .programme .idx{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--clay); letter-spacing:0.06em; }
+  .programme h4{ font-size:18px; margin-top:14px; }
+  .programme p{ font-size:14.5px; color:rgba(33,28,21,0.7); margin-top:10px; }
+  .programme ul{ margin:14px 0 0; padding-left:18px; font-size:13.5px; color:rgba(33,28,21,0.65); }
+  .programme li{ margin-bottom:5px; }
+
+  .process{ margin-top:60px; }
+  .process-row{ display:flex; gap:0; overflow-x:auto; padding-bottom:6px; }
+  .process-step{ flex:1; min-width:200px; padding:0 22px 0 0; position:relative; }
+  .process-step:not(:last-child)::after{ content:"→"; position:absolute; right:-2px; top:2px; color:var(--clay); font-family:'IBM Plex Mono',monospace; }
+  .process-step .mono{ font-size:11px; color:var(--clay); letter-spacing:0.08em; text-transform:uppercase; }
+  .process-step h4{ font-size:15.5px; margin-top:8px; }
+  .process-step p{ font-size:13.5px; color:rgba(33,28,21,0.65); margin-top:6px; }
+
+  /* ---------- gallery ---------- */
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:150px; gap:12px;
+  }
+  .gallery-grid a{ position:relative; overflow:hidden; border-radius:5px; display:block; }
+  .gallery-grid img{ width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
+  .gallery-grid a:hover img{ transform:scale(1.06); }
+  .gallery-grid .g-wide{ grid-column:span 2; }
+  .gallery-grid .g-tall{ grid-row:span 2; }
+  .g-caption{
+    position:absolute; inset:auto 0 0 0; padding:10px 12px;
+    background:linear-gradient(to top, rgba(21,34,25,0.85), transparent);
+    color:var(--ivory); font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.03em;
+    opacity:0; transition:opacity .2s ease;
+  }
+  .gallery-grid a:hover .g-caption{ opacity:1; }
+  .video-block{ margin-top:30px; border-radius:6px; overflow:hidden; border:1px solid var(--line); }
+  .video-block video{ width:100%; display:block; background:#000; }
+  .video-caption{ padding:14px 18px; background:#fff; font-size:13.5px; color:rgba(33,28,21,0.65); font-family:'IBM Plex Mono',monospace; border-top:1px solid var(--line); }
+
+  /* ---------- contact ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .contact-list{ display:flex; flex-direction:column; gap:0; margin-top:34px; }
+  .contact-item{ display:flex; gap:18px; padding:20px 0; border-top:1px solid var(--line-light); }
+  .contact-item:last-child{ border-bottom:1px solid var(--line-light); }
+  .contact-icon{
+    width:40px;height:40px;border-radius:50%; background:rgba(199,154,43,0.14); color:var(--gold);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px;
+  }
+  .contact-item b{ display:block; font-size:12px; font-family:'IBM Plex Mono',monospace; letter-spacing:0.06em; text-transform:uppercase; color:rgba(243,236,219,0.55); margin-bottom:4px; }
+  .contact-item a, .contact-item span.val{ font-size:15.5px; color:var(--ivory); text-decoration:none; }
+  .contact-item a:hover{ color:var(--gold); }
+  .visit-card{ background:var(--canopy-deep); border:1px solid rgba(243,236,219,0.14); border-radius:6px; padding:0; overflow:hidden; }
+  .visit-card iframe{ width:100%; height:260px; border:0; filter:grayscale(0.15); }
+  .visit-copy{ padding:26px; }
+  .visit-copy h4{ font-size:17px; color:var(--ivory); }
+  .visit-copy p{ font-size:14px; color:rgba(243,236,219,0.7); margin-top:10px; }
+
+  footer{ background:var(--canopy-deep); color:rgba(243,236,219,0.55); padding:34px 0; font-size:13px; }
+  .footer-row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; align-items:center; }
+  footer a{ color:rgba(243,236,219,0.75); text-decoration:none; }
+
+  @media (max-width: 900px){
+    .navbar nav.links{ display:none; }
+    .burger{ display:block; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .stamp-wrap{ order:-1; }
+    .about-grid{ grid-template-columns:1fr; }
+    .specimens{ grid-template-columns:1fr; }
+    .elec-grid{ grid-template-columns:1fr; }
+    .gadget-strip{ grid-template-columns:1fr; }
+    .gadget-strip img{ min-height:180px; }
+    .programmes{ grid-template-columns:1fr; }
+    .programme{ border-right:none; border-bottom:1px solid var(--line); }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .contact-grid{ grid-template-columns:1fr; }
+    .hero-stats{ gap:26px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <a href="#top" class="brand">
+      <span class="brand-mark">MG</span>
+      <span class="brand-text"><b>Merkhet Group</b><span>Kibale Research Protocol</span></span>
+    </a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#products">Soaps</a>
+      <a href="#electronics">Electronics</a>
+      <a href="#training">Training</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </nav>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('mobileNav').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </div>
+  <div id="mobileNav" style="display:none; flex-direction:column; padding:8px 28px 20px; border-top:1px solid var(--line);">
+    <a href="#about" style="padding:10px 0;">About</a>
+    <a href="#products" style="padding:10px 0;">Soaps</a>
+    <a href="#electronics" style="padding:10px 0;">Electronics</a>
+    <a href="#training" style="padding:10px 0;">Training</a>
+    <a href="#gallery" style="padding:10px 0;">Gallery</a>
+    <a href="#contact" style="padding:10px 0;">Get in touch</a>
+  </div>
+</header>
+
+<section id="top" class="hero">
+  <div class="wrap" style="padding-bottom:64px;">
+    <div class="hero-grid">
+      <div>
+        <span class="field-tag">Bigodi, Kamwenge District — Uganda · 0.5°N, 30.4°E</span>
+        <h1>Practical science,<br><em>built at home.</em></h1>
+        <p class="lede">Merkhet Group — the Kibale Research Protocol — is a youth-led research and manufacturing collective turning local materials into soaps, electronics, and hands-on science training for our community.</p>
+        <div class="hero-ctas">
+          <a href="#products" class="btn btn-primary">See what we make</a>
+          <a href="#contact" class="btn btn-ghost">Work with us</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>2</b><span>Soap lines</span></div>
+          <div class="stat"><b>3+</b><span>Electronics builds</span></div>
+          <div class="stat"><b>3</b><span>Training programmes</span></div>
+          <div class="stat"><b>UG</b><span>Bigodi, Kamwenge</span></div>
+        </div>
+      </div>
+      <div class="stamp-wrap">
+        <div class="hero-photo">
+          <img src="https://merkhetcom.vercel.app/chemlab1.jpeg" alt="Merkhet Group field laboratory in Bigodi, Uganda">
+          <div class="photo-caption">FIG. 01 — Field Lab, Bigodi</div>
+        </div>
+        <svg class="stamp" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="92" fill="none" stroke="#C79A2B" stroke-width="2"/>
+          <circle cx="100" cy="100" r="78" fill="none" stroke="#C79A2B" stroke-width="1"/>
+          <path id="stampCircle" d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0" fill="none"/>
+          <text font-family="IBM Plex Mono, monospace" font-size="11.3" letter-spacing="3" fill="#C79A2B">
+            <textPath href="#stampCircle" startOffset="2%">KIBALE RESEARCH PROTOCOL • EST. BIGODI •</textPath>
+          </text>
+          <text x="100" y="94" text-anchor="middle" font-family="Fraunces, serif" font-size="30" fill="#F3ECDB">MG</text>
+          <text x="100" y="116" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="2" fill="#C79A2B">UGANDA</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="tear into-ivory"></div>
+</section>
+
+<section id="about" class="pad">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <span class="eyebrow">Who we are</span>
+        <h2>Science rooted in the motherland.</h2>
+        <p>Merkhet Group — also known as the Kibale Research Protocol (KRP) — is a startup run by conscious young women and men in Uganda. We blend scientific method with everyday technology to solve real community problems, using materials and minerals sourced directly from our own land.</p>
+        <p>Our work is grounded in African consciousness and Pan-Africanism, with a clear aim: to tackle the problems conventional education systems have struggled to solve. Through research, unity and a shared desire for independence, peace and progress, we study our history and our environment to build knowledge and self-reliance in African communities.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="num">1</div>
+          <div><h4>Practical science</h4><p>Rigorous, hands-on methods applied to everyday problems — not theory left on a page.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="num">2</div>
+          <div><h4>Local materials</h4><p>Ingredients, resources and minerals sourced directly from our land, not imported.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="num">3</div>
+          <div><h4>African consciousness</h4><p>Pan-African values of unity, independence and self-reliance guide every project.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tear into-canopy"></div>
+
+<section id="products" class="canopy-section pad">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Our products</span>
+      <h2>High-quality soaps, formulated in-house from local materials.</h2>
+      <p>We formulate every product using a careful, repeatable scientific method — tested for quality before it reaches a household.</p>
+    </div>
+    <div class="specimens">
+      <div class="specimen">
+        <div class="imgs two">
+          <img src="https://merkhetcom.vercel.app/liquidsoap1.jpeg" alt="Merkhet liquid soap in production">
+          <img src="https://merkhetcom.vercel.app/finishedliqui.jpeg" alt="Finished bottled liquid soap">
+        </div>
+        <div class="specimen-body">
+          <span class="tag-label">Specimen A</span>
+          <h3>Liquid Soap</h3>
+          <p>Perfect for washing hands and surfaces — formulated for everyday household, school, church and community use.</p>
+        </div>
+      </div>
+      <div class="specimen">
+        <div class="imgs one">
+          <img src="https://merkhetcom.vercel.app/barsoap1.jpeg" alt="Merkhet bar soap">
+        </div>
+        <div class="specimen-body">
+          <span class="tag-label">Specimen B</span>
+          <h3>Bar Soap</h3>
+          <p>Long-lasting and tough on dirt, gentle on skin — made in small, carefully tested batches.</p>
+        </div>
+      </div>
+      <div class="specimen">
+        <div class="imgs one">
+          <img src="https://merkhetcom.vercel.app/chemlab1.jpeg" alt="Chemistry lab where formulations are developed">
+        </div>
+        <div class="specimen-body">
+          <span class="tag-label">Specimen C</span>
+          <h3>In the Lab</h3>
+          <p>Every formulation starts here — measured, tested and refined before it becomes a finished product.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tear on-ivory"></div>
+
+<section id="electronics" class="pad">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Electronics science</span>
+      <h2>Building devices that solve community problems.</h2>
+      <p>Beyond chemical science and soaps, our team designs and builds electronic devices — from working prototypes to teaching tools for the next generation of local innovators.</p>
+    </div>
+    <div class="elec-grid">
+      <div class="elec-card">
+        <img src="https://merkhetcom.vercel.app/toycar1.jpeg" alt="Electric toy car built by Merkhet Group">
+        <div class="body"><h4>Electric Toy Cars</h4><p>Remote-controlled builds designed and assembled by our team.</p></div>
+      </div>
+      <div class="elec-card">
+        <img src="https://merkhetcom.vercel.app/toycarcontrols1.jpeg" alt="Custom controller for the electric toy car">
+        <div class="body"><h4>Custom Controls</h4><p>Hand-built controllers paired with each vehicle.</p></div>
+      </div>
+      <div class="elec-card">
+        <img src="https://merkhetcom.vercel.app/toycar3.jpeg" alt="Electric toy car detail">
+        <div class="body"><h4>Assembly Detail</h4><p>Circuitry and chassis work, finished in-house.</p></div>
+      </div>
+    </div>
+    <div class="gadget-strip">
+      <img src="https://merkhetcom.vercel.app/ownbuiltgadgets.jpeg" alt="Own-built electric gadgets">
+      <div class="gadget-copy">
+        <span class="eyebrow">Own-built gadgets</span>
+        <h3>From concept sketch to working prototype.</h3>
+        <p>We're developing original electric gadgets aimed at solving practical problems in our communities — small appliances, teaching aids and tools shaped by what our neighbours actually need.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tear into-canopy"></div>
+
+<section id="training" class="canopy-section pad">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Science &amp; tech training</span>
+      <h2>Teaching the next generation of innovators.</h2>
+      <p>We run hands-on programmes that pass practical skills directly to young people in our community.</p>
+    </div>
+    <div class="programmes">
+      <div class="programme">
+        <span class="idx">Programme 01</span>
+        <h4>Circuit building</h4>
+        <p>Basic electronics fundamentals, taught through real, hands-on builds.</p>
+        <ul><li>Reading and assembling simple circuits</li><li>Soldering and wiring basics</li><li>Building a working device from scratch</li></ul>
+      </div>
+      <div class="programme">
+        <span class="idx">Programme 02</span>
+        <h4>Safe chemical handling</h4>
+        <p>Practical, safety-first training in mixing and formulation.</p>
+        <ul><li>Measuring and mixing raw materials</li><li>Lab safety and hygiene practice</li><li>Formulating and testing a batch</li></ul>
+      </div>
+      <div class="programme">
+        <span class="idx">Programme 03</span>
+        <h4>Problem-solving</h4>
+        <p>Skills for future innovators to identify and solve real community problems.</p>
+        <ul><li>Spotting problems worth solving locally</li><li>Prototyping with what's on hand</li><li>Testing ideas with real users</li></ul>
+      </div>
+    </div>
+    <div class="process">
+      <span class="eyebrow">How a Merkhet project moves</span>
+      <div class="process-row">
+        <div class="process-step"><span class="mono">01 — Observe</span><h4>Find the problem</h4><p>We start in the community, not the lab.</p></div>
+        <div class="process-step"><span class="mono">02 — Source</span><h4>Gather local material</h4><p>Only what's available on our own land.</p></div>
+        <div class="process-step"><span class="mono">03 — Test</span><h4>Formulate &amp; build</h4><p>Repeatable method, checked for quality.</p></div>
+        <div class="process-step"><span class="mono">04 — Teach</span><h4>Pass it on</h4><p>Every build becomes a training moment.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tear into-ivory"></div>
+
+<section id="gallery" class="pad">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">From the field</span>
+      <h2>Inside the lab and the classroom.</h2>
+      <p>A working record of what happens on the ground in Bigodi — measured, mixed and built by hand.</p>
+    </div>
+    <div class="gallery-grid">
+      <a href="https://merkhetcom.vercel.app/lab5.jpeg" target="_blank" rel="noopener" class="g-wide g-tall">
+        <img src="https://merkhetcom.vercel.app/lab5.jpeg" alt="Merkhet Group lab session">
+        <span class="g-caption">Lab session — Bigodi</span>
+      </a>
+      <a href="https://merkhetcom.vercel.app/mixing.jpeg" target="_blank" rel="noopener">
+        <img src="https://merkhetcom.vercel.app/mixing.jpeg" alt="Mixing formulation in the lab">
+        <span class="g-caption">Mixing a formulation</span>
+      </a>
+      <a href="https://merkhetcom.vercel.app/toycar1.jpeg" target="_blank" rel="noopener">
+        <img src="https://merkhetcom.vercel.app/toycar1.jpeg" alt="Electric toy car build">
+        <span class="g-caption">Electronics build</span>
+      </a>
+      <a href="https://merkhetcom.vercel.app/chemlab1.jpeg" target="_blank" rel="noopener" class="g-tall">
+        <img src="https://merkhetcom.vercel.app/chemlab1.jpeg" alt="Chemistry lab workspace">
+        <span class="g-caption">Chemistry workspace</span>
+      </a>
+      <a href="https://merkhetcom.vercel.app/liquidsoap1.jpeg" target="_blank" rel="noopener">
+        <img src="https://merkhetcom.vercel.app/liquidsoap1.jpeg" alt="Liquid soap production">
+        <span class="g-caption">Soap production</span>
+      </a>
+      <a href="https://merkhetcom.vercel.app/ownbuiltgadgets.jpeg" target="_blank" rel="noopener">
+        <img src="https://merkhetcom.vercel.app/ownbuiltgadgets.jpeg" alt="Own-built electric gadgets">
+        <span class="g-caption">Own-built gadgets</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="tear into-canopy"></div>
+
+<section id="contact" class="canopy-section pad">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow">Get in touch</span>
+        <h2>Let's build something together.</h2>
+        <p style="margin-top:16px; color:rgba(243,236,219,0.75); font-size:16px;">Whether you're a partner, funder, supplier or community member — we'd love to hear from you.</p>
+        <div class="contact-list">
+          <div class="contact-item">
+            <div class="contact-icon">@</div>
+            <div><b>Email</b><a href="mailto:merkhetgbidz@gmail.com">merkhetgbidz@gmail.com</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">☎</div>
+            <div><b>Phone</b><a href="tel:+256759579816">+256 759 579 816</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✆</div>
+            <div><b>WhatsApp</b><a href="https://wa.me/256759579816" target="_blank" rel="noopener">+256 759 579 816</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">⌂</div>
+            <div><b>Address</b><span class="val">Bigodi Town Council, Kamwenge District, Uganda</span></div>
+          </div>
+        </div>
+        <a href="https://wa.me/256759579816" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:32px;">Message us on WhatsApp →</a>
+      </div>
+      <div class="visit-card">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Bigodi+Town+Council,+Kamwenge+District,+Uganda&output=embed">
+        </iframe>
+        <div class="visit-copy">
+          <h4>Visit the workshop</h4>
+          <p>Our lab and workshop sit in Bigodi Town Council, near Kibale National Park in western Uganda — where our research, materials and story all begin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 Merkhet Group — Kibale Research Protocol. Bigodi, Uganda. Practical science. Local materials. Shared knowledge.</div>
+    <div>Developed by <a href="#" target="_blank" rel="noopener">Ntwirenabo Anthelm</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
